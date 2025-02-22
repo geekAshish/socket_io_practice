@@ -1,7 +1,7 @@
 import io from "socket.io-client";
 
 import "./App.css";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import Input from "./components/Input";
 
 interface UserDetailsInterface {
@@ -15,7 +15,9 @@ function App() {
     score: "0",
   });
 
-  const socket = io("http://localhost:3000");
+  const socket = useMemo(() => {
+    return io("http://localhost:3000", {});
+  }, []);
 
   const connectSocket = () => {
     socket.on("connection", () => {});

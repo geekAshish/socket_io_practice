@@ -18,6 +18,11 @@ const io = new Server(httpServer, {
 
 const playerDetails: UserDetailsInterface[] = [];
 
+io.use((socket, next) => {
+  // middleware
+  // check for auth, cookie
+});
+
 io.on("connection", (socket) => {
   socket.on("send-player-details", (player_details) => {
     playerDetails.push({ ...player_details, id: socket.id });
